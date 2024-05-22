@@ -3,6 +3,7 @@ import Job from "./Job";
 
 const Jobs = () => {
     const [jobs, setJobs] = useState([])
+    const [dataLength, setDataLength] = useState(4)
     useEffect(()=>{
         fetch("/data/jobs.json")
         .then(res => res.json())
@@ -14,12 +15,16 @@ const Jobs = () => {
             <h1>Featured Jobs: {jobs.length}</h1>
         </div>
        <div className="flex justify-center items-center">
-       <div className="grid grid-rows-1 sm:grid-cols-2 lg:grid-cols-3 ">
+       <div className="grid grid-rows-1 sm:grid-cols-2 lg:grid-cols-2 ">
             {
-                jobs.map(job => <Job key={job.id} job={job}></Job>)
+                jobs.slice(0,dataLength).map(job => <Job key={job.id} job={job}></Job>)
             }
         </div>
+        
        </div>
+       <div className={dataLength === jobs.length && 'hidden'}>
+            <button onClick={()=>{setDataLength(jobs.length)}} className="btn">Show All</button>
+        </div>
         </>
         
     );
