@@ -14,17 +14,17 @@ const Jobs = () => {
         <div>
             <h1>Featured Jobs: {jobs.length}</h1>
         </div>
-       <div className="flex justify-center items-center">
-       <div className="grid grid-rows-1 sm:grid-cols-2 lg:grid-cols-2 ">
+       <div className="flex flex-col justify-center items-center">
+       <div className="grid grid-rows-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
             {
                 jobs.slice(0,dataLength).map(job => <Job key={job.id} job={job}></Job>)
             }
         </div>
-        
-       </div>
-       <div className={dataLength === jobs.length && 'hidden'}>
-            <button onClick={()=>{setDataLength(jobs.length)}} className="btn">Show All</button>
+        <div className={dataLength === jobs.length && 'hidden' }>
+            <button onClick={()=>{setDataLength(jobs.length)}} className="btn mt-4">Show All</button>
         </div>
+       </div>
+       
         </>
         
     );
